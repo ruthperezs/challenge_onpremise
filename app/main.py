@@ -2,33 +2,32 @@ from datetime import datetime
 from fastapi import FastAPI
 import uvicorn
 from pydantic import BaseModel
-from typing import Optional
+from typing import Optional,List
 from datetime import datetime
+from fastapi import Depends,Request
+from sqlalchemy.orm import Session
+from schemas import *
+from db.models import hiredemployees,departments,jobs
+from db.database import SessionLocal,engine,get_db,Base
+import crud
 
-class User(BaseModel):
-  id:int
-  name:str
-  apellido:str
-  direccion:Optional[str]
-  telefono:int
-  creacion_user:datetime=datetime.now()
-
-
+Base.metadata.create_all(bind=engine)
 app = FastAPI()
-usuarios = []
+
 @app.get("/hiredemployees")
-def obtener_hiredemployees():
-  return {"mensaje": "Bienvenido a la API Challenge :) "}
+def obtener_hiredemployees(request: Request,db: Session = Depends(get_db)):
+  data = crud.get_hired_employees(db)
+  return data
 
 @app.get("/departments")
-def obtener_departments():
-  print("req1")
-  return True
+def obtener_departments(request: Request,db: Session = Depends(get_db)):
+  depart = crud.get_departments(db)
+  return depart
 
 @app.get("/jobs")
-def obtener_jobs():
-  print("req2")
-  return True
+def obtener_jobs(request: Request,db: Session = Depends(get_db)):
+  jobss= crud.get_jobs(db)
+  return jobss
 
 @app.get("/challenge2/informe1")
 def informe1():

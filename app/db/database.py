@@ -11,6 +11,13 @@ BASEDIR = os.path.abspath(os.path.dirname(__file__))
 SQLALCHEMY_DATABASE_URL = "postgresql://postgres:octubre@localhost:5432/db_challenge"
 print(SQLALCHEMY_DATABASE_URL)
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
-SessionLocal = sessionmaker(bin=engine,autocommit=False,autoflush=False)
+SessionLocal = sessionmaker(bind=engine,autocommit=False,autoflush=False)
 Base = declarative_base()
 print("ok")
+
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
