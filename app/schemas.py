@@ -8,20 +8,13 @@ class hired(BaseModel):
     department_id: int
     job_id: int
 
-    class Config:
-        orm_mode = True
-
 
 class departaments(BaseModel):
     id: int
     departament: str
 
-    class Config:
-        orm_mode = True
 
 class job(BaseModel):
     id: int
     job: str
 
-    class Config:
-        orm_mode = True

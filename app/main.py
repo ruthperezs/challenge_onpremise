@@ -16,22 +16,44 @@ class User(BaseModel):
 
 app = FastAPI()
 usuarios = []
-@app.get("/ruta1")
-def ruta1():
+@app.get("/hiredemployees")
+def obtener_hiredemployees():
   return {"mensaje": "Bienvenido a la API Challenge :) "}
 
-@app.get("/requirement1")
-def requirement1():
+@app.get("/departments")
+def obtener_departments():
   print("req1")
   return True
 
-@app.get("/requirement2")
-def requirement2():
+@app.get("/jobs")
+def obtener_jobs():
   print("req2")
   return True
 
-@app.post("/test")
-def test():
+@app.get("/challenge2/informe1")
+def informe1():
+  print("req2")
+  return True
+
+@app.get("/challenge2/informe2")
+def informe2():
+  print("req2")
+  return True
+
+@app.post("/batch/hiredemployees")
+async def b_hiredemployees():
+  
+  print("AQUI")
+  return True
+
+@app.post("/batch/departments")
+async def b_departments():
+  
+  print("AQUI")
+  return True
+
+@app.post("/batch/jobs")
+async def b_jobs():
   
   print("AQUI")
   return True
