@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+pandas
+psycopg2
+psycopg2-binary
+SQLAlchemy
+requests
+fastavro
